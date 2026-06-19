@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCalc Pro - Calculate Smarter, Faster, Better</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Live Clock -->
+    <div class="live-clock">
+        <div class="clock-time" id="clockTime">00:00:00</div>
+        <div class="clock-date" id="clockDate">Jan 01, 2026</div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">SmartCalc Pro</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="#finance" class="nav-link">Finance Tools</a></li>
+                <li><a href="#themes" class="nav-link">Themes</a></li>
+                <li><a href="#history" class="nav-link">History</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <button onclick="toggleTheme()" id="themeToggle">🌙 Dark Mode
+                </button>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="background-slideshow">
+                <div class="slide slide-active">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                </div>
+                <div class="slide">
+                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                </div>
+                <div class="slide">
+                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                </div>
+                <div class="slide">
+                    <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">SmartCalc Pro</h1>
+            <p class="hero-tagline">Calculate Smarter, Faster, Better.</p>
+            <p class="hero-description">A modern calculator designed for everyday calculations, finance tools, scientific functions, keyboard shortcuts, themes, and productivity.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToCalculator()">Ready To Calculate</button>
+                <button class="btn btn-secondary" onclick="openThemeGallery()">Theme Gallery</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <h2 class="section-title">Calculator</h2>
+            <div class="calculator-wrapper">
+                <!-- Calculator -->
+                <div class="calculator-container">
+                    <div class="calculator-display" id="display">0</div>
+                    <div class="calculator-buttons">
+                        <!-- Row 1 -->
+                        <button class="btn-calc btn-function" onclick="clearDisplay()">AC</button>
+                        <button class="btn-calc btn-function" onclick="deleteLastChar()">⌫</button>
+                        <button class="btn-calc btn-function" onclick="appendOperator('%')">%</button>
+                        <button class="btn-calc btn-operator" onclick="appendOperator('/')">÷</button>
+
+                        <!-- Row 2 -->
+                        <button class="btn-calc" onclick="appendNumber('7')">7</button>
+                        <button class="btn-calc" onclick="appendNumber('8')">8</button>
+                        <button class="btn-calc" onclick="appendNumber('9')">9</button>
+                        <button class="btn-calc btn-operator" onclick="appendOperator('*')">×</button>
+
+                        <!-- Row 3 -->
+                        <button class="btn-calc" onclick="appendNumber('4')">4</button>
+                        <button class="btn-calc" onclick="appendNumber('5')">5</button>
+                        <button class="btn-calc" onclick="appendNumber('6')">6</button>
+                        <button class="btn-calc btn-operator" onclick="appendOperator('-')">−</button>
+
+                        <!-- Row 4 -->
+                        <button class="btn-calc" onclick="appendNumber('1')">1</button>
+                        <button class="btn-calc" onclick="appendNumber('2')">2</button>
+                        <button class="btn-calc" onclick="appendNumber('3')">3</button>
+                        <button class="btn-calc btn-operator" onclick="appendOperator('+')">+</button>
+
+                        <!-- Row 5 -->
+                        <button class="btn-calc btn-zero" onclick="appendNumber('0')">0</button>
+                        <button class="btn-calc" onclick="appendNumber('.')">.</button>
+                        <button class="btn-calc btn-equals" onclick="calculate()">=</button>
+                    </div>
+                </div>
+
+                <!-- History Panel -->
+                <div class="history-panel">
+                    <div class="history-header">
+                        <h3>History</h3>
+                        <div class="history-buttons">
+                            <button class="history-btn" onclick="copyHistory()" title="Copy">📋</button>
+                            <button class="history-btn" onclick="clearHistory()" title="Clear">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <p class="history-empty">No calculations yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scientific Calculator Section -->
+            <div class="scientific-section">
+                <button class="scientific-toggle" onclick="toggleScientific()">
+                    <span>Scientific</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="scientific-buttons hidden" id="scientificButtons">
+                    <button class="btn-calc btn-scientific" onclick="scientificFunction('sqrt')">√</button>
+                    <button class="btn-calc btn-scientific" onclick="scientificFunction('square')">x²</button>
+                    <button class="btn-calc btn-scientific" onclick="scientificFunction('cube')">x³</button>
+                    <button class="btn-calc btn-scientific" onclick="scientificFunction('reciprocal')">1/x</button>
+                    <button class="btn-calc btn-scientific" onclick="scientificFunction('pi')">π</button>
+                    <button class="btn-calc btn-scientific" onclick="appendOperator('^')">x^y</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Finance Tools -->
+    <section class="finance-section" id="finance">
+        <div class="container">
+            <h2 class="section-title">Quick Finance Tools</h2>
+            <div class="finance-grid">
+                <!-- GST Calculator -->
+                <div class="finance-card">
+                    <h3>GST Calculator</h3>
+                    <div class="finance-inputs">
+                        <input type="number" id="gstAmount" placeholder="Amount" onchange="calculateGST()">
+                        <input type="number" id="gstRate" placeholder="GST Rate (%)" value="18" onchange="calculateGST()">
+                    </div>
+                    <div class="finance-result">
+                        <p><span>GST:</span> <strong id="gstValue">₹0</strong></p>
+                        <p><span>Total:</span> <strong id="gstTotal">₹0</strong></p>
+                    </div>
+                </div>
+
+                <!-- Discount Calculator -->
+                <div class="finance-card">
+                    <h3>Discount Calculator</h3>
+                    <div class="finance-inputs">
+                        <input type="number" id="discountPrice" placeholder="Original Price" onchange="calculateDiscount()">
+                        <input type="number" id="discountPercent" placeholder="Discount (%)" onchange="calculateDiscount()">
+                    </div>
+                    <div class="finance-result">
+                        <p><span>Discount:</span> <strong id="discountAmount">₹0</strong></p>
+                        <p><span>Final Price:</span> <strong id="discountFinal">₹0</strong></p>
+                    </div>
+                </div>
+
+                <!-- Tip Calculator -->
+                <div class="finance-card">
+                    <h3>Tip Calculator</h3>
+                    <div class="finance-inputs">
+                        <input type="number" id="tipBill" placeholder="Bill Amount" onchange="calculateTip()">
+                        <input type="number" id="tipPercent" placeholder="Tip (%)" value="15" onchange="calculateTip()">
+                    </div>
+                    <div class="finance-result">
+                        <p><span>Tip:</span> <strong id="tipAmount">₹0</strong></p>
+                        <p><span>Total:</span> <strong id="tipTotal">₹0</strong></p>
+                    </div>
+                </div>
+
+                <!-- EMI Calculator -->
+                <div class="finance-card">
+                    <h3>EMI Calculator</h3>
+                    <div class="finance-inputs">
+                        <input type="number" id="emiPrincipal" placeholder="Principal Amount" onchange="calculateEMI()">
+                        <input type="number" id="emiRate" placeholder="Interest Rate (% per year)" onchange="calculateEMI()">
+                        <input type="number" id="emiMonths" placeholder="Months" onchange="calculateEMI()">
+                    </div>
+                    <div class="finance-result">
+                        <p><span>Monthly EMI:</span> <strong id="emiValue">₹0</strong></p>
+                        <p><span>Total Amount:</span> <strong id="emiTotal">₹0</strong></p>
+                    </div>
+                </div>
+
+                <!-- Currency Converter -->
+                <div class="finance-card">
+                    <h3>Currency Converter</h3>
+                    <div class="finance-inputs">
+                        <input type="number" id="currencyAmount" placeholder="Amount" onchange="convertCurrency()">
+                        <select id="currencyFrom" onchange="convertCurrency()">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                        <span class="currency-arrow">→</span>
+                        <select id="currencyTo" onchange="convertCurrency()">
+                            <option value="USD">USD</option>
+                            <option value="INR">INR</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                    </div>
+                    <div class="finance-result">
+                        <p><strong id="currencyResult">0 USD</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- History Section -->
+<section class="history-page" id="history">
+    <div class="container">
+        <h2 class="section-title">Calculation History</h2>
+
+        <div class="history-panel">
+            <div class="history-list" id="fullHistoryList">
+                <p class="history-empty">
+                    Your calculation history will appear here.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact SmartCalc Pro</h2>
+
+        <div class="contact-card">
+            <h3>Get In Touch</h3>
+
+            <p>📧 Email: smartcalcpro@gmail.com</p>
+            <p>🌐 Website: SmartCalc Pro</p>
+            <p>⚡ Built with HTML, CSS & JavaScript</p>
+        </div>
+    </div>
+</section>
+    <!-- Theme Gallery Modal -->
+    <div class="modal hidden" id="themeModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeThemeGallery()">✕</button>
+            <h2>Theme Gallery</h2>
+            <div class="theme-gallery">
+                <div class="theme-card" style="background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);" onclick="applyTheme('skyBlue')">
+                    <span>Sky Blue</span>
+                </div>
+                <div class="theme-card" style="background: linear-gradient(135deg, #DDA0DD 0%, #EFD5FF 100%);" onclick="applyTheme('lavender')">
+                    <span>Lavender</span>
+                </div>
+                <div class="theme-card" style="background: linear-gradient(135deg, #98FF98 0%, #E0FFE0 100%);" onclick="applyTheme('mintGreen')">
+                    <span>Mint Green</span>
+                </div>
+                <div class="theme-card" style="background: linear-gradient(135deg, #FDBCB4 0%, #FFE4E1 100%);" onclick="applyTheme('peach')">
+                    <span>Peach</span>
+                </div>
+                <div class="theme-card" style="background: linear-gradient(135deg, #FFD700 0%, #FFF8DC 100%);" onclick="applyTheme('sunsetGold')">
+                    <span>Sunset Gold</span>
+                </div>
+                <div class="theme-card" style="background: linear-gradient(135deg, #FFB6C1 0%, #FFF0F5 100%);" onclick="applyTheme('roseQuartz')">
+                    <span>Rose Quartz</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
